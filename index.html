@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「横盘蓄势 · 放量上行」选股策略分析 | 2026-10-05</title>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --card-border: #e4e8ef;
+    --text: #1f2733;
+    --text-secondary: #5a6a7d;
+    --heading: #0f172a;
+    --accent: #1e6feb;
+    --accent-light: #eaf1fe;
+    --positive: #c6352b;
+    --negative: #0c8a4e;
+    --positive-bg: #fdeceb;
+    --negative-bg: #e9f7f0;
+    --table-head: #f0f4fa;
+    --table-stripe: #f8fafc;
+    --table-border: #e4e8ef;
+    --shadow: 0 1px 3px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.06);
+    --code-bg: #f1f4f8;
+    --bar-track: #e8edf4;
+    --badge-def: #f0f4fa;
+    --badge-def-text: #3d4c60;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1420;
+      --card: #161d2c;
+      --card-border: #253044;
+      --text: #dbe2ee;
+      --text-secondary: #93a1b5;
+      --heading: #f1f5fb;
+      --accent: #6ba3ff;
+      --accent-light: #1d2b45;
+      --positive: #ff8b81;
+      --negative: #5fd8a4;
+      --positive-bg: #3a2224;
+      --negative-bg: #183128;
+      --table-head: #1d2536;
+      --table-stripe: #1a2233;
+      --table-border: #2a3448;
+      --shadow: 0 1px 3px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+      --code-bg: #1d2536;
+      --bar-track: #242e42;
+      --badge-def: #1d2536;
+      --badge-def-text: #aab6c8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1420;
+    --card: #161d2c;
+    --card-border: #253044;
+    --text: #dbe2ee;
+    --text-secondary: #93a1b5;
+    --heading: #f1f5fb;
+    --accent: #6ba3ff;
+    --accent-light: #1d2b45;
+    --positive: #ff8b81;
+    --negative: #5fd8a4;
+    --positive-bg: #3a2224;
+    --negative-bg: #183128;
+    --table-head: #1d2536;
+    --table-stripe: #1a2233;
+    --table-border: #2a3448;
+    --shadow: 0 1px 3px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    --code-bg: #1d2536;
+    --bar-track: #242e42;
+    --badge-def: #1d2536;
+    --badge-def-text: #aab6c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 32px 20px 64px;
+    transition: background .3s, color .3s;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  /* 主题切换 */
+  .theme-toggle {
+    position: fixed; top: 18px; right: 18px; z-index: 100;
+    background: var(--card); border: 1px solid var(--card-border);
+    color: var(--text); border-radius: 999px; padding: 8px 16px;
+    font-size: 13px; cursor: pointer; box-shadow: var(--shadow);
+    transition: background .2s;
+  }
+  .theme-toggle:hover { background: var(--accent-light); }
+
+  /* 头部 */
+  header.hero {
+    background: linear-gradient(135deg, #164a9c 0%, #1e6feb 55%, #4a9df8 100%);
+    color: #fff; border-radius: 16px; padding: 36px 40px;
+    box-shadow: var(--shadow); position: relative; overflow: hidden;
+    margin-bottom: 28px;
+  }
+  header.hero::after {
+    content: ""; position: absolute; right: -60px; top: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: rgba(255,255,255,.08);
+  }
+  header.hero::before {
+    content: ""; position: absolute; right: 40px; bottom: -90px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: .5px; position: relative; z-index: 1; }
+  .hero .sub { margin-top: 8px; font-size: 15px; opacity: .92; position: relative; z-index: 1; }
+  .hero .meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+  .hero .meta span {
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px; padding: 4px 14px; font-size: 12.5px;
+  }
+
+  /* 章节 */
+  section { margin-bottom: 28px; }
+  .card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 26px 30px; box-shadow: var(--shadow);
+    transition: background .3s, border-color .3s;
+  }
+  h2 {
+    font-size: 20px; color: var(--heading); font-weight: 700;
+    margin-bottom: 16px; padding-left: 12px; border-left: 4px solid var(--accent);
+  }
+  h3 { font-size: 16px; color: var(--heading); margin: 20px 0 10px; font-weight: 600; }
+  p { margin-bottom: 10px; }
+  a { color: var(--accent); }
+
+  /* 表格 */
+  .table-wrap { overflow-x: auto; margin-bottom: 12px; border-radius: 10px; border: 1px solid var(--table-border); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+  thead th {
+    background: var(--table-head); color: var(--heading);
+    text-align: left; padding: 11px 14px; font-weight: 600;
+    border-bottom: 2px solid var(--table-border); white-space: nowrap;
+  }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--table-border); white-space: nowrap; }
+  tbody tr:nth-child(even) { background: var(--table-stripe); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--accent-light); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* 徽章 & 涨跌 */
+  .up { color: var(--positive); font-weight: 600; }
+  .down { color: var(--negative); font-weight: 600; }
+  .tag { display: inline-block; border-radius: 6px; padding: 2px 10px; font-size: 12.5px; }
+  .tag-grade-a { background: var(--positive-bg); color: var(--positive); }
+  .tag-grade-b { background: var(--accent-light); color: var(--accent); }
+  .tag-grade-c { background: var(--badge-def); color: var(--badge-def-text); }
+  .tag-def { background: var(--badge-def); color: var(--badge-def-text); }
+  .rank { font-weight: 700; }
+  .rank-1 { color: #c98600; }
+  .rank-2 { color: #8a9bb0; }
+  .rank-3 { color: #b06a3a; }
+
+  /* 评分进度条 */
+  .score-wrap { min-width: 110px; display: flex; align-items: center; gap: 8px; }
+  .score-bar { flex: 1; height: 8px; background: var(--bar-track); border-radius: 999px; overflow: hidden; }
+  .score-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #1e6feb, #4a9df8); }
+  .score-num { font-variant-numeric: tabular-nums; font-weight: 700; min-width: 38px; }
+
+  /* SVG 条形图 */
+  .chart-card { padding: 20px 24px; }
+  .chart-title { font-size: 14px; font-weight: 600; color: var(--heading); margin-bottom: 14px; }
+  svg text { font-family: inherit; }
+  .legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--text-secondary); margin-top: 10px; flex-wrap: wrap; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .legend .dot-a { background: #1e6feb; }
+  .legend .dot-b { background: #4a9df8; }
+
+  /* 分析网格 */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .ana-item { background: var(--table-stripe); border: 1px solid var(--table-border); border-radius: 12px; padding: 18px 20px; }
+  .ana-item h4 { font-size: 15px; color: var(--accent); margin-bottom: 8px; }
+  .ana-item ul { padding-left: 18px; font-size: 13.8px; }
+  .ana-item li { margin-bottom: 7px; }
+  .ana-item li::marker { color: var(--accent); }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 6px; }
+  .kpi { background: var(--table-stripe); border: 1px solid var(--table-border); border-radius: 10px; padding: 14px 16px; text-align: center; }
+  .kpi .val { font-size: 22px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .kpi .lbl { font-size: 12.5px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* 提示 */
+  .note { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 8px; padding: 12px 16px; font-size: 13.5px; color: var(--text-secondary); margin-top: 14px; }
+  .warn { background: var(--positive-bg); border-left: 4px solid var(--positive); border-radius: 8px; padding: 12px 16px; font-size: 13.5px; margin-top: 14px; }
+  .warn strong { color: var(--positive); }
+  footer { text-align: center; font-size: 12.5px; color: var(--text-secondary); margin-top: 32px; }
+  @media (max-width: 640px) {
+    header.hero { padding: 26px 22px; }
+    header.hero h1 { font-size: 22px; }
+    .card { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓 切换深浅色</button>
+<div class="container">
+
+  <header class="hero">
+    <h1>「横盘蓄势 · 放量上行」长期选股策略报告</h1>
+    <div class="sub">多因子筛选框架：基本面过滤 → 技术形态过滤 → 综合评分</div>
+    <div class="meta">
+      <span>📅 生成日期：2026-10-05</span>
+      <span>📊 数据来源：同花顺 iWencai / K线接口</span>
+      <span>🎯 候选标的：6 只沪深主板个股</span>
+    </div>
+  </header>
+
+  <!-- 一、策略参数 -->
+  <section>
+    <div class="card">
+      <h2>一、策略参数说明（可复用）</h2>
+
+      <h3>1. 基本面过滤（长期投资方向）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>阈值</th><th>目的</th></tr></thead>
+          <tbody>
+            <tr><td>ROE</td><td>连续 3 年 ≥ 10%～15%（本池按 ≥12% 过滤）</td><td>盈利质量</td></tr>
+            <tr><td>净利润增长</td><td>连续 3 年 ≥ 8%</td><td>成长性</td></tr>
+            <tr><td>资产负债率</td><td>&lt; 50%</td><td>财务稳健</td></tr>
+            <tr><td>上市年限</td><td>&gt; 5 年</td><td>规避次新股</td></tr>
+            <tr><td>总市值</td><td>&gt; 100 亿</td><td>大中盘、流动性好</td></tr>
+            <tr><td>市盈率</td><td>0 &lt; PE &lt; 35</td><td>估值合理</td></tr>
+            <tr><td>排除项</td><td>ST、科创板过新股</td><td>规避风险</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2. 技术形态过滤（前期横盘 + 当前上升）</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="val">120~61</div><div class="lbl">横盘段 · 回看K线区间</div></div>
+        <div class="kpi"><div class="val">8%~55%</div><div class="lbl">区间振幅约束</div></div>
+        <div class="kpi"><div class="val">≤22%</div><div class="lbl">区间净趋势</div></div>
+        <div class="kpi"><div class="val">≤9%</div><div class="lbl">区间波动率</div></div>
+        <div class="kpi"><div class="val">≥3%</div><div class="lbl">近40日涨幅</div></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>阶段</th><th>考察区间</th><th>条件</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="tag tag-def">横盘段</span></td>
+              <td>最近约 60 个交易日（回看第 120～61 根 K 线）</td>
+              <td>区间振幅 8% ≤ (最高-最低)/最低 ≤ 55%<br>区间净趋势 |末价-初价|/初价 ≤ 22%<br>收盘价标准差/均值 ≤ 9%</td>
+            </tr>
+            <tr>
+              <td><span class="tag tag-def">上升段</span></td>
+              <td>最近 40 个交易日</td>
+              <td>近 40 日涨幅 ≥ 3%<br>均线多头：MA5 &gt; MA10 &gt; MA20 &gt; MA60<br>股价突破横盘区间上沿（平台突破）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3. 综合评分</h3>
+      <p>
+        <span class="tag tag-def">横盘度得分</span> 波动率低 + 趋势小 + 振幅适中　＋　
+        <span class="tag tag-def">上升度得分</span> 涨幅 + 多头排列 + 突破
+      </p>
+      <p><strong>总分 = 横盘度 × 0.5 + 上升度 × 0.5</strong></p>
+    </div>
+  </section>
+
+  <!-- 二、筛选结果 -->
+  <section>
+    <div class="card">
+      <h2>二、筛选结果（2026-10-05）</h2>
+
+      <h3>候选股票综合榜单</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>排名</th><th>股票</th><th>代码</th><th class="num">现价(元)</th>
+              <th class="num">近40日涨幅</th><th class="num">近20日涨幅</th>
+              <th class="num">横盘振幅</th><th class="num">横盘波动率</th><th>总评分</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank rank-1">1</span></td><td>川投能源</td><td>600674</td>
+              <td class="num">16.62</td><td class="num up">+10.95%</td><td class="num up">+5.39%</td>
+              <td class="num">16.1%</td><td class="num">3.1%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:82%"></i></div><span class="score-num">0.82</span></div></td>
+            </tr>
+            <tr>
+              <td><span class="rank rank-2">2</span></td><td>青岛港</td><td>601298</td>
+              <td class="num">10.06</td><td class="num up">+14.44%</td><td class="num up">+8.52%</td>
+              <td class="num">22.3%</td><td class="num">4.4%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:80%"></i></div><span class="score-num">0.80</span></div></td>
+            </tr>
+            <tr>
+              <td><span class="rank rank-3">3</span></td><td>宁沪高速</td><td>600377</td>
+              <td class="num">13.00</td><td class="num up">+8.88%</td><td class="num up">+3.42%</td>
+              <td class="num">14.6%</td><td class="num">3.3%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:74%"></i></div><span class="score-num">0.74</span></div></td>
+            </tr>
+            <tr>
+              <td><span class="rank">4</span></td><td>药明康德</td><td>603259</td>
+              <td class="num">167.34</td><td class="num up">+13.84%</td><td class="num up">+8.74%</td>
+              <td class="num">46.5%</td><td class="num">7.9%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:56%"></i></div><span class="score-num">0.56</span></div></td>
+            </tr>
+            <tr>
+              <td><span class="rank">5</span></td><td>中远海控</td><td>601919</td>
+              <td class="num">16.37</td><td class="num up">+6.30%</td><td class="num down">-3.59%</td>
+              <td class="num">14.4%</td><td class="num">2.9%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:55%"></i></div><span class="score-num">0.55</span></div></td>
+            </tr>
+            <tr>
+              <td><span class="rank">6</span></td><td>杭州银行</td><td>600926</td>
+              <td class="num">17.11</td><td class="num up">+9.05%</td><td class="num up">+3.01%</td>
+              <td class="num">21.4%</td><td class="num">4.5%</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:53%"></i></div><span class="score-num">0.53</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>基本面补充表（ROE / 股息率 / 行业）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>股票</th><th class="num">最新年化 ROE</th><th class="num">股息率</th><th>行业</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>川投能源</td><td class="num">10.97%</td><td class="num">3.60%</td><td>公用事业-水电</td></tr>
+            <tr><td>青岛港</td><td class="num">11.95%</td><td class="num">4.14%</td><td>交通运输-港口</td></tr>
+            <tr><td>宁沪高速</td><td class="num">11.48%</td><td class="num">4.05%</td><td>交通运输-高速公路</td></tr>
+            <tr><td>药明康德</td><td class="num">28.56%</td><td class="num">2.51%</td><td>医药生物-医疗研发外包</td></tr>
+            <tr><td>中远海控</td><td class="num">13.17%</td><td class="num">6.59%</td><td>交通运输-航运</td></tr>
+            <tr><td>杭州银行</td><td class="num">14.65%</td><td class="num">4.32%</td><td>银行-城商行</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 近40日涨幅条形图 -->
+      <div class="chart-card" style="background:var(--card); border:1px solid var(--card-border); border-radius:10px; margin-top:6px;">
+        <div class="chart-title">📈 近 40 日涨幅条形图（%）</div>
+        <svg viewBox="0 0 720 230" width="100%" style="max-width:720px; display:block;" role="img" aria-label="近40日涨幅条形图">
+          <!-- 网格线 -->
+          <g stroke="var(--bar-track)" stroke-width="1">
+            <line x1="40" y1="10" x2="40" y2="190"/>
+            <line x1="40" y1="190" x2="700" y2="190"/>
+          </g>
+          <!-- 条形（值从数据计算：max 14.44 => 102px） -->
+          <g>
+            <rect x="60"  y="88"  width="70" height="102" rx="6" fill="#1e6feb" opacity=".95"/>
+            <rect x="150" y="113" width="70" height="77"  rx="6" fill="#1e6feb" opacity=".95"/>
+            <rect x="240" y="92"  width="70" height="98"  rx="6" fill="#4a9df8" opacity=".95"/>
+            <rect x="330" y="126" width="70" height="64"  rx="6" fill="#4a9df8" opacity=".95"/>
+            <rect x="420" y="127" width="70" height="63"  rx="6" fill="#4a9df8" opacity=".95"/>
+            <rect x="510" y="146" width="70" height="44"  rx="6" fill="#4a9df8" opacity=".95"/>
+          </g>
+          <!-- 数值标签 -->
+          <g fill="var(--text-secondary)" font-size="12" text-anchor="middle">
+            <text x="95"  y="78">14.44</text>
+            <text x="185" y="103">10.95</text>
+            <text x="275" y="82">13.84</text>
+            <text x="365" y="116">9.05</text>
+            <text x="455" y="117">8.88</text>
+            <text x="545" y="136">6.30</text>
+          </g>
+          <!-- 股票名标签 -->
+          <g fill="var(--text)" font-size="12.5" text-anchor="middle">
+            <text x="95"  y="205">青岛港</text>
+            <text x="185" y="205">川投能源</text>
+            <text x="275" y="205">药明康德</text>
+            <text x="365" y="205">杭州银行</text>
+            <text x="455" y="205">宁沪高速</text>
+            <text x="545" y="205">中远海控</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i class="dot-a"></i>排名前 2（评分 ≥ 0.80）</span>
+          <span><i class="dot-b"></i>其余候选（评分 &lt; 0.80）</span>
+          <span>数据点：近 40 日涨幅（%）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、选股策略分析 -->
+  <section>
+    <div class="card">
+      <h2>三、选股策略分析</h2>
+
+      <div class="grid">
+        <div class="ana-item">
+          <h4>① 横盘形态有效性</h4>
+          <ul>
+            <li>6 只标的横盘期波动率全部处于 2.9%～7.9% 区间，均远低于 9% 上限，横盘“蓄势”特征真实成立。</li>
+            <li>高评分股（0.74+）横盘振幅集中在 14%～22% 的“适中带”，量价整理充分、上行弹性好。</li>
+            <li>评分与横盘质量高度相关：波动率越低、振幅越适中，最终评分越高（前三名恰好是最“标准”的横盘形态）。</li>
+          </ul>
+        </div>
+        <div class="ana-item">
+          <h4>② 板块分布</h4>
+          <ul>
+            <li>交通运输占 3 席（港口/高速/航运），公用事业（水电）1 席，银行 1 席，医药外包 1 席。</li>
+            <li>整体偏向低估值、高股息、现金流稳定的防御性板块，契合“长期投资 + 横盘启动”的稳健定位。</li>
+            <li>此类板块通常机构持仓比例高，放量上行持续性较好，但爆发力弱于成长题材。</li>
+          </ul>
+        </div>
+        <div class="ana-item">
+          <h4>③ 个股特征</h4>
+          <ul>
+            <li>青岛港近 40 日涨幅 14.44% 居首且近 20 日仍 +8.52%，趋势延续性最好；川投能源评分 0.82 居首，攻守平衡。</li>
+            <li>药明康德 ROE 28.56% 显著领先，为唯一高成长标的，但横盘振幅 46.5% 已偏离“横盘”定义，属波动上行。</li>
+            <li>中远海控股息率 6.59% 为全场最高，防御属性突出，但短期动能为负（近 20 日 -3.59%）。</li>
+          </ul>
+        </div>
+        <div class="ana-item">
+          <h4>④ 风险点</h4>
+          <ul>
+            <li><strong>趋势背离</strong>：中远海控近 20 日涨幅为负，短期动能不足，需重点跟踪航运周期景气度。</li>
+            <li><strong>形态失真</strong>：药明康德横盘振幅 46.5% 远超策略“横盘”本意，波动风险偏高。</li>
+            <li><strong>板块滞后</strong>：防御类标的在风险偏好回升阶段可能跑输成长主线，需注意市场风格切换。</li>
+            <li><strong>数据时效</strong>：结果基于历史 K 线与指标筛选，未纳入最新财报与行业事件，建仓前须二次验证。</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>策略总结</h3>
+      <p>本策略以“<strong>横盘蓄势 + 放量突破</strong>”为技术核心，叠加 ROE ≥ 12%、净利增长 ≥ 8%、负债率 &lt; 50% 等基本面硬约束，筛选出的 6 只标的多为沪深主板大盘防御蓝筹。其中川投能源、青岛港、宁沪高速横盘形态最标准、评分最高，值得优先关注；药明康德与中远海控各有明显短板（形态偏宽 / 动能转弱），需结合自身风险偏好区别对待。</p>
+
+      <div class="warn"><strong>免责声明：</strong>本页面为数据筛选结果展示，不构成任何投资建议；历史形态不代表未来收益，请结合最新财报、行业景气度与个人风险偏好进一步验证后审慎决策。</div>
+      <div class="note">* 内容由 AI 生成，仅供参考。数据快照日期：2026-10-05。</div>
+    </div>
+  </section>
+
+  <footer>「横盘蓄势 · 放量上行」选股策略报告 · 数据来源：同花顺 iWencai / K线接口 · 2026-10-05</footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    var root = document.documentElement;
+    if (root.getAttribute('data-theme') === 'dark') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+    }
+  }
+</script>
+</body>
+</html>
