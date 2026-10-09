@@ -157,6 +157,8 @@
   .tag-grade-b { background: var(--accent-light); color: var(--accent); }
   .tag-grade-c { background: var(--badge-def); color: var(--badge-def-text); }
   .tag-def { background: var(--badge-def); color: var(--badge-def-text); }
+  .tag-up { background: var(--positive-bg); color: var(--positive); }
+  .tag-down { background: var(--negative-bg); color: var(--negative); }
   .rank { font-weight: 700; }
   .rank-1 { color: #c98600; }
   .rank-2 { color: #8a9bb0; }
@@ -438,10 +440,139 @@
     </div>
   </section>
 
+  <!-- 三、历史选股与验证 -->
+  <section>
+    <div class="card">
+      <h2>三、历史选股与验证</h2>
+      <p>回看历次选股结果，并用最新行情验证其后续表现，跟踪策略正确率。</p>
+
+      <h3>2026-10-05 期（首期）验证结果</h3>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="ana-item"><h4>平均涨幅</h4><p style="font-size:26px;font-weight:700;margin:6px 0;color:var(--accent);">+0.41%</p></div>
+        <div class="ana-item"><h4>上涨标的</h4><p style="font-size:26px;font-weight:700;margin:6px 0;color:var(--accent);">4/6</p></div>
+        <div class="ana-item"><h4>上涨率（正确率）</h4><p style="font-size:26px;font-weight:700;margin:6px 0;color:var(--accent);">67%</p></div>
+        <div class="ana-item"><h4>验证区间</h4><p style="font-size:15px;margin:8px 0;">2026-10-05 快照<br>→ 2026-10-09 收盘</p></div>
+      </div>
+      <p class="note">区间表现自首期快照（对应 09-30 收盘价）起算，至 2026-10-09 收盘；国庆假期（10-01~10-07）休市，实际交易区间为 09-30 → 10-08 → 10-09。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>股票</th><th>代码</th><th class="num">选股价(10-05)</th><th class="num">最新价(10-09)</th><th class="num">区间涨跌</th><th>状态</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>川投能源</td><td>600674</td>
+              <td class="num">16.62</td><td class="num">17.04</td>
+              <td class="num up">+2.53%</td>
+              <td><span class="tag tag-up">上涨</span></td>
+            </tr>
+            <tr>
+              <td>青岛港</td><td>601298</td>
+              <td class="num">10.06</td><td class="num">10.04</td>
+              <td class="num down">-0.20%</td>
+              <td><span class="tag tag-down">下跌</span></td>
+            </tr>
+            <tr>
+              <td>宁沪高速</td><td>600377</td>
+              <td class="num">13.00</td><td class="num">13.49</td>
+              <td class="num up">+3.77%</td>
+              <td><span class="tag tag-up">上涨</span></td>
+            </tr>
+            <tr>
+              <td>药明康德</td><td>603259</td>
+              <td class="num">167.34</td><td class="num">157.80</td>
+              <td class="num down">-5.70%</td>
+              <td><span class="tag tag-down">下跌</span></td>
+            </tr>
+            <tr>
+              <td>中远海控</td><td>601919</td>
+              <td class="num">16.37</td><td class="num">16.67</td>
+              <td class="num up">+1.83%</td>
+              <td><span class="tag tag-up">上涨</span></td>
+            </tr>
+            <tr>
+              <td>杭州银行</td><td>600926</td>
+              <td class="num">17.11</td><td class="num">17.15</td>
+              <td class="num up">+0.23%</td>
+              <td><span class="tag tag-up">上涨</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>最新一期记录（2026-10-09，待验证）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>股票</th><th>代码</th><th class="num">现价(元)</th><th>总评分</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>川投能源</td><td>600674</td>
+              <td class="num">17.04</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:88%"></i></div><span class="score-num">0.88</span></div></td>
+            </tr>
+            <tr>
+              <td>宁沪高速</td><td>600377</td>
+              <td class="num">13.49</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:82%"></i></div><span class="score-num">0.82</span></div></td>
+            </tr>
+            <tr>
+              <td>青岛港</td><td>601298</td>
+              <td class="num">10.04</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:80%"></i></div><span class="score-num">0.80</span></div></td>
+            </tr>
+            <tr>
+              <td>中远海控</td><td>601919</td>
+              <td class="num">16.67</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:75%"></i></div><span class="score-num">0.75</span></div></td>
+            </tr>
+            <tr>
+              <td>齐鲁银行</td><td>601665</td>
+              <td class="num">7.08</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:71%"></i></div><span class="score-num">0.71</span></div></td>
+            </tr>
+            <tr>
+              <td>伊利股份</td><td>600887</td>
+              <td class="num">27.66</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:71%"></i></div><span class="score-num">0.71</span></div></td>
+            </tr>
+            <tr>
+              <td>锦江航运</td><td>601083</td>
+              <td class="num">13.38</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:66%"></i></div><span class="score-num">0.66</span></div></td>
+            </tr>
+            <tr>
+              <td>新华文轩</td><td>601811</td>
+              <td class="num">20.91</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:63%"></i></div><span class="score-num">0.63</span></div></td>
+            </tr>
+            <tr>
+              <td>江苏银行</td><td>600919</td>
+              <td class="num">12.37</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:57%"></i></div><span class="score-num">0.58</span></div></td>
+            </tr>
+            <tr>
+              <td>杭州银行</td><td>600926</td>
+              <td class="num">17.15</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:55%"></i></div><span class="score-num">0.55</span></div></td>
+            </tr>
+            <tr>
+              <td>新产业</td><td>300832</td>
+              <td class="num">50.50</td>
+              <td><div class="score-wrap"><div class="score-bar"><i style="width:40%"></i></div><span class="score-num">0.40</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- 三、选股策略分析 -->
   <section>
     <div class="card">
-      <h2>三、选股策略分析</h2>
+      <h2>四、选股策略分析</h2>
 
       <div class="grid">
         <div class="ana-item">

@@ -1,0 +1,183 @@
+{
+  "generated_at": "2026-10-09",
+  "periods": [
+    {
+      "date": "2026-10-05",
+      "note": "首期选股（快照对应 09-30 收盘）",
+      "stocks": [
+        {
+          "code": "600674",
+          "name": "川投能源",
+          "price": 16.62,
+          "score": 0.82
+        },
+        {
+          "code": "601298",
+          "name": "青岛港",
+          "price": 10.06,
+          "score": 0.8
+        },
+        {
+          "code": "600377",
+          "name": "宁沪高速",
+          "price": 13.0,
+          "score": 0.74
+        },
+        {
+          "code": "603259",
+          "name": "药明康德",
+          "price": 167.34,
+          "score": 0.56
+        },
+        {
+          "code": "601919",
+          "name": "中远海控",
+          "price": 16.37,
+          "score": 0.55
+        },
+        {
+          "code": "600926",
+          "name": "杭州银行",
+          "price": 17.11,
+          "score": 0.53
+        }
+      ],
+      "verification": {
+        "latest_date": "2026-10-09",
+        "avg_change": 0.41,
+        "up_count": 4,
+        "total": 6,
+        "up_ratio": 67,
+        "stocks": [
+          {
+            "code": "600674",
+            "name": "川投能源",
+            "pick_price": 16.62,
+            "score": 0.82,
+            "latest_price": 17.04,
+            "change_pct": 2.53,
+            "up": true
+          },
+          {
+            "code": "601298",
+            "name": "青岛港",
+            "pick_price": 10.06,
+            "score": 0.8,
+            "latest_price": 10.04,
+            "change_pct": -0.2,
+            "up": false
+          },
+          {
+            "code": "600377",
+            "name": "宁沪高速",
+            "pick_price": 13.0,
+            "score": 0.74,
+            "latest_price": 13.49,
+            "change_pct": 3.77,
+            "up": true
+          },
+          {
+            "code": "603259",
+            "name": "药明康德",
+            "pick_price": 167.34,
+            "score": 0.56,
+            "latest_price": 157.8,
+            "change_pct": -5.7,
+            "up": false
+          },
+          {
+            "code": "601919",
+            "name": "中远海控",
+            "pick_price": 16.37,
+            "score": 0.55,
+            "latest_price": 16.67,
+            "change_pct": 1.83,
+            "up": true
+          },
+          {
+            "code": "600926",
+            "name": "杭州银行",
+            "pick_price": 17.11,
+            "score": 0.53,
+            "latest_price": 17.15,
+            "change_pct": 0.23,
+            "up": true
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-09",
+      "note": "最新一期（待后续验证）",
+      "stocks": [
+        {
+          "code": "600674",
+          "name": "川投能源",
+          "price": 17.04,
+          "score": 0.88
+        },
+        {
+          "code": "600377",
+          "name": "宁沪高速",
+          "price": 13.49,
+          "score": 0.82
+        },
+        {
+          "code": "601298",
+          "name": "青岛港",
+          "price": 10.04,
+          "score": 0.8
+        },
+        {
+          "code": "601919",
+          "name": "中远海控",
+          "price": 16.67,
+          "score": 0.75
+        },
+        {
+          "code": "601665",
+          "name": "齐鲁银行",
+          "price": 7.08,
+          "score": 0.71
+        },
+        {
+          "code": "600887",
+          "name": "伊利股份",
+          "price": 27.66,
+          "score": 0.71
+        },
+        {
+          "code": "601083",
+          "name": "锦江航运",
+          "price": 13.38,
+          "score": 0.66
+        },
+        {
+          "code": "601811",
+          "name": "新华文轩",
+          "price": 20.91,
+          "score": 0.63
+        },
+        {
+          "code": "600919",
+          "name": "江苏银行",
+          "price": 12.37,
+          "score": 0.58
+        },
+        {
+          "code": "600926",
+          "name": "杭州银行",
+          "price": 17.15,
+          "score": 0.55
+        },
+        {
+          "code": "300832",
+          "name": "新产业",
+          "price": 50.5,
+          "score": 0.4
+        }
+      ],
+      "verification": null
+    }
+  ]
+}
